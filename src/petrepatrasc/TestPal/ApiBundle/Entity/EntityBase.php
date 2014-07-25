@@ -1,13 +1,15 @@
-<?php
+<?hh
 
 
 namespace petrepatrasc\TestPal\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
+ * @JMS\ExclusionPolicy("all")
  */
 class EntityBase
 {
@@ -16,6 +18,7 @@ class EntityBase
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
      */
     protected int $id;
 

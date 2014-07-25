@@ -4,22 +4,29 @@
 namespace petrepatrasc\TestPal\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="question")
+ * @JMS\XmlRoot("question")
+ * @JMS\ExclusionPolicy("all")
  */
 class Question extends EntityBase
 {
     /**
      * @var string
      * @ORM\Column(type="string", name="title")
+     * @JMS\Expose
+     * @JMS\XmlElement(cdata=false)
      */
     protected string $title;
 
     /**
      * @var string
      * @ORM\Column(type="string", name="content")
+     * @JMS\Expose
+     * @JMS\XmlElement(cdata=false)
      */
     protected string $content;
 

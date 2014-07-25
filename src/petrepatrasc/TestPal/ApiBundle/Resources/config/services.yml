@@ -1,7 +1,7 @@
 parameters:
-#    test_pal_api.example.class: petrepatrasc\TestPal\ApiBundle\Example
+    tp.api.search.service.class: petrepatrasc\TestPal\ApiBundle\Service\SearchService
 
 services:
-#    test_pal_api.example:
-#        class: %test_pal_api.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    tp.api.search.service:
+        class: %tp.api.search.service.class%
+        arguments: [@doctrine.orm.entity_manager]
