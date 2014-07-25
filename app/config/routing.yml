@@ -1,0 +1,3 @@
+test_pal_api:
+    resource: "@TestPalApiBundle/Resources/config/routing.yml"
+    prefix:   /api/
