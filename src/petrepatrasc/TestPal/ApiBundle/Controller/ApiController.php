@@ -21,4 +21,10 @@ class ApiController extends FOSRestController
         $view = $this->view($data, 200);
         return $this->handleView($view);
     }
+
+    protected function handleList(Traversable $data): Response
+    {
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
 } 

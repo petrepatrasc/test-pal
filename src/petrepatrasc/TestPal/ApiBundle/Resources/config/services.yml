@@ -1,7 +1,12 @@
 parameters:
     tp.api.search.service.class: petrepatrasc\TestPal\ApiBundle\Service\SearchService
+    tp.api.list.service.class: petrepatrasc\TestPal\ApiBundle\Service\ListService
 
 services:
     tp.api.search.service:
         class: %tp.api.search.service.class%
+        arguments: [@doctrine.orm.entity_manager]
+
+    tp.api.list.service:
+        class: %tp.api.list.service.class%
         arguments: [@doctrine.orm.entity_manager]

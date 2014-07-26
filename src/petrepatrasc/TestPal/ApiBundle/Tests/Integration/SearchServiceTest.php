@@ -14,7 +14,8 @@ class SearchServiceTest extends IntegrationBase
      */
     protected SearchService $searchService;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
 
         $this->searchService = static::$kernel->getContainer()->get('tp.api.search.service');

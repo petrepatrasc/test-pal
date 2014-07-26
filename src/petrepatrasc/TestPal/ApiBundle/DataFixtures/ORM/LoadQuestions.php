@@ -17,11 +17,15 @@ class LoadQuestions extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $question = new Question();
-
-        $question->setTitle('Tip-top')
-            ->setContent('Lorem ipsum');
-
+        $question->setTitle('Agile')
+            ->setContent('The trend of work remaining across time in a Sprint, a release, or a product, with work remaining tracked on the vertical axis and the time periods tracked on the horizontal axis. Is called?');
         $manager->persist($question);
+
+        $question = new Question();
+        $question->setTitle('PHP')
+            ->setContent('Given the string $data = ABCD, what will running strtolower(strtoupper($data)) return?');
+        $manager->persist($question);
+
         $manager->flush();
     }
 
