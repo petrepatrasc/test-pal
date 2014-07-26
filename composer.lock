@@ -4,8 +4,61 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b3baa7de3cf99e0ea87ff4db10369ad",
+    "hash": "7f5451a72e4617ddb66f735968de660f",
     "packages": [
+        {
+            "name": "cegeka/symfony-toolkit",
+            "version": "1.0.1",
+            "target-dir": "Cegeka/SymfonyToolkitBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cegeka/symfony-toolkit.git",
+                "reference": "bfeb9c3a8155a9958761903ebdff272e0b1eaa8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cegeka/symfony-toolkit/zipball/bfeb9c3a8155a9958761903ebdff272e0b1eaa8a",
+                "reference": "bfeb9c3a8155a9958761903ebdff272e0b1eaa8a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/orm": "~2.4",
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.5",
+                "symfony/security-bundle": "~2.5",
+                "symfony/validator": "~2.5",
+                "symfony/yaml": "~2.5"
+            },
+            "require-dev": {
+                "twig/twig": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Cegeka\\SymfonyToolkitBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Petre Pătrașc",
+                    "email": "petre@dreamlabs.ro",
+                    "homepage": "http://petrepatrasc.github.io"
+                }
+            ],
+            "description": "Toolkit used across projects for team consistency",
+            "keywords": [
+                "php",
+                "symfony",
+                "toolkit"
+            ],
+            "time": "2014-06-18 15:31:47"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.0",

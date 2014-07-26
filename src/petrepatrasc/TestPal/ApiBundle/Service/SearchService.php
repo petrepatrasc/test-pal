@@ -12,9 +12,9 @@ class SearchService
     /**
      * @var ObjectManager
      */
-    protected $manager;
+    protected ObjectManager $manager;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(ObjectManager $manager): void
     {
         $this->manager = $manager;
     }

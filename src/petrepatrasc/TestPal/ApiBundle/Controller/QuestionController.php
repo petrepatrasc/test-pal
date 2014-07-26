@@ -1,17 +1,18 @@
-<?php
+<?hh
 
 namespace petrepatrasc\TestPal\ApiBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 
-use FOS\RestBundle\Controller\FOSRestController;
-
-class QuestionController extends FOSRestController
+class QuestionController extends ApiController
 {
-    public function showAction($id)
+    /**
+     * @param string $id
+     * @return Response
+     */
+    public function showAction(string $id): Response
     {
         $question = $this->get('tp.api.search.service')->findQuestionById(intval($id));
-
-        $view = $this->view($question, 200);
-        return $this->handleView($view);
+        return $this->handleData($question);
     }
 } 
