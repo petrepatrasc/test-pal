@@ -2,7 +2,7 @@ body {
     color: #333;
     background: url('../images/bg-texture-00.svg') repeat scroll 0% 0% #333;
     font-family: "Fira Sans", "Source Sans Pro", Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 #main-content {
@@ -16,6 +16,19 @@ body {
     color: #369;
     padding: 0.5em 0;
     margin-top: -1px;
+}
+
+#main-content .questions {
+    margin-top: 3em;
+}
+
+#main-content .answers {
+    margin-bottom: 3em;
+}
+
+#main-content .answer-entry {
+    margin-top: 1em;
+    padding-top: 1em;
 }
 
 #sidebar {

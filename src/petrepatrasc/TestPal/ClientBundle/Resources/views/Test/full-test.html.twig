@@ -3,7 +3,7 @@
 {% block title %}{{ test.name }} - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div id="main-content" class="col-md-9">
+    <div id="main-content" class="col-lg-9">
         <h1>{{ test.name }}</h1>
 
         <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before we
@@ -19,26 +19,35 @@
             <li>This exam contains <strong>60</strong> questions. The questions will cover a variety of subjects.</li>
         </ul>
 
-        <form method="post" action="#">
-            {% set questionNumber = 1 %}
-            {% for question in test.questions %}
-                <div class="question">
-                    <h2 class="question-title">Question {{ questionNumber }}: {{ question.category }}</h2>
+        <div class="questions">
+            <form method="post" action="#">
+                {% set questionNumber = 1 %}
+                {% for question in test.questions %}
+                    <div class="question">
+                        <h2 class="question-title">Question {{ questionNumber }}: {{ question.category }}</h2>
 
-                    <p>{{ question.content }}</p>
+                        <p>{{ question.content }}</p>
 
-                    {% for answer in question.answers %}
-                        <input type="radio" name="question[{{ question.id }}]"
-                               value="{{ answer.assignedIdentifier }}"/> {{ answer.content }} <br>
-                    {% endfor %}
+                        <div class="answers">
+                            {% for answer in question.answers %}
+                                <div class="answer-entry">
+                                    <input type="radio" id="answer_{{ answer.id }}" class="answer-radio css-checkbox"
+                                           name="question[{{ question.id }}]"
+                                           value="{{ answer.assignedIdentifier }}"/> <label
+                                            class="answer-label css-label"
+                                            for="answer_{{ answer.id }}">{{ answer.content }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
 
-                    {% set questionNumber = questionNumber + 1 %}
-                </div>
-            {% endfor %}
-        </form>
+                        {% set questionNumber = questionNumber + 1 %}
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
     </div>
 
-    <div id="sidebar" class="col-md-3">
+    <div id="sidebar" class="col-lg-3">
         <div class="sidebar-content">
             <h3>Time Spent</h3>
 

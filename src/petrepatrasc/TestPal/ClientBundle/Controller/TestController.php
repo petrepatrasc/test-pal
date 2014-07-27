@@ -16,7 +16,7 @@ class TestController extends Controller
         ]);
 
         if (null === $test) {
-            throw new InvalidResourceException('Test permalink does not correspond!');
+            throw new InvalidResourceException('Test permalink does not exist!');
         }
 
         return $this->render('@TestPalClient/Test/full-test.html.twig', [
