@@ -8,7 +8,14 @@
 
         <p>Your results can be found below:</p>
 
-        <p>You answered {{ examination.score }} / {{ examination.test.questions | length }} questions in this exam, and
-            scored {{ (examination.score / examination.test.questions | length) * 100 }}%.</p>
+        <p>You answered {{ examination.score }} / {{ examination.test.questions | length }} questions correctly in this exam, and
+            scored {{ (examination.score / examination.test.questions | length) * 100 }}% overall.</p>
+
+        <ul>
+            {% for key, category in categoryData %}
+                <li>In the <strong>{{ key }}</strong> category, you answered {{ category.correct }}
+                    / {{ category.total }} questions correctly, and scored {{ category.correct / category.total * 100 }}%.</li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

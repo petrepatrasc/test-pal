@@ -58,6 +58,12 @@ class Examination extends EntityBase
     protected $userKey;
 
     /**
+     * @var string
+     * @ORM\Column(type="text", name="answers_json", nullable=true)
+     */
+    protected $answers;
+
+    /**
      * @param string $candidateName
      * @return $this
      */
@@ -163,6 +169,24 @@ class Examination extends EntityBase
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * @param string $answers
+     * @return $this
+     */
+    public function setAnswers($answers)
+    {
+        $this->answers = $answers;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 
 

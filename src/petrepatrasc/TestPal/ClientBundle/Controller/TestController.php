@@ -18,9 +18,31 @@ class TestController extends Controller
     {
         /** @var Examination $examination */
         $examination = $this->retrieveExamination($permalink, $userKey);
+        $answers = json_decode($examination->getAnswers(), true);
+
+        $categoryData = [];
+
+        /** @var Question $question */
+        foreach ($examination->getTest()->getQuestions() as $question) {
+            if (!array_key_exists($question->getCategory(), $categoryData)) {
+                $categoryData[$question->getCategory()] = [
+                    'correct' => 0,
+                    'total' => 0,
+                ];
+            }
+
+            $userAnswer = $answers[$question->getId()];
+
+            if ($userAnswer === $question->getCorrectAnswer()->getId()) {
+                $categoryData[$question->getCategory()]['correct'] ++;
+            }
+
+            $categoryData[$question->getCategory()]['total'] ++;
+        }
 
         return $this->render('@TestPalClient/Test/test-results.html.twig', [
             'examination' => $examination,
+            'categoryData' => $categoryData,
         ]);
     }
 
@@ -33,19 +55,23 @@ class TestController extends Controller
             throw new AccessDeniedException('This examination has already been submitted.');
         }
 
+        $answers = [];
         $score = 0;
         $questions = $examination->getTest()->getQuestions();
         /** @var Question $question */
         foreach ($questions as $question) {
-            $userAnswer = (int) $request->get('question_' . $question->getId());
+            $userAnswer = (int)$request->get('question_' . $question->getId());
 
             if ($userAnswer === $question->getCorrectAnswer()->getId()) {
                 $score++;
             }
+
+            $answers[$question->getId()] = $userAnswer;
         }
 
         $examination->setScore($score)
-            ->setFinished(true);
+            ->setFinished(true)
+            ->setAnswers(json_encode($answers));
 
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($examination);
