@@ -1,0 +1,3 @@
+tp_test_start:
+    pattern:    /test/start/{permalink}
+    defaults:   { _controller: TestPalClientBundle:Test:startTest }

@@ -1,7 +1,0 @@
-api_question_show:
-    pattern:    /question/{id}/show.{_format}
-    defaults:   { _controller: TestPalApiBundle:Question:show }
-
-api_question_list:
-    pattern:    /question/list.{_format}
-    defaults:   { _controller: TestPalApiBundle:Question:list }

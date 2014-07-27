@@ -1,6 +1,3 @@
-test_pal_api:
-    resource: "@TestPalApiBundle/Resources/config/routing.yml"
-    prefix:   /api/
-    methods: [GET]
-    requirements:
-        _format: xml|json
+test_pal_client:
+    resource: "@TestPalClientBundle/Resources/config/routing.yml"
+    prefix:   /
