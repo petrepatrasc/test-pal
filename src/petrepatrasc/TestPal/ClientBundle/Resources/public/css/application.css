@@ -1,0 +1,35 @@
+body {
+    color: #333;
+    background: url('../images/bg-texture-00.svg') repeat scroll 0% 0% #333;
+    font-family: "Fira Sans", "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+#main-content {
+    background-color: #F2F2F2;
+    line-height: 1.5em;
+    padding: 1.5em;
+}
+
+#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 {
+    border-bottom: 1px dotted;
+    color: #369;
+    padding: 0.5em 0;
+    margin-top: -1px;
+}
+
+#sidebar {
+    color: #E6E6E6;
+}
+
+.sidebar-content {
+    position: fixed;
+}
+
+#sidebar h3 {
+    font-weight: bold;
+}
+
+.question-navigator-link {
+    margin: 0.3em;
+}

@@ -2,32 +2,62 @@
 
 {% block title %}{{ test.name }} - {{ parent() }}{% endblock %}
 
-{% block body %}
-    <h1>{{ test.name }}</h1>
+{% block content %}
+    <div id="main-content" class="col-md-9">
+        <h1>{{ test.name }}</h1>
 
-    <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before we get
-        started.</p>
+        <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before we
+            get
+            started.</p>
 
-    <ul>
-        <li>The exam lasts <strong>60</strong> minutes. A timer will be displayed on the right-hand side of the screen
-            in order to display the time still left in the exam.
-        </li>
-        <li>We do not give points for leaving early so make sure you use the entire time at your disposal.</li>
-        <li>This exam contains <strong>60</strong> questions. The question will cover a variety of subjects.</li>
-    </ul>
+        <ul>
+            <li>The exam lasts <strong>60</strong> minutes. A timer will be displayed on the right-hand side of the
+                screen
+                in order to display the time still left in the exam.
+            </li>
+            <li>We do not give points for leaving early so make sure you use the entire time at your disposal.</li>
+            <li>This exam contains <strong>60</strong> questions. The questions will cover a variety of subjects.</li>
+        </ul>
 
-    <form method="post" action="#">
-        {% set questionNumber = 1 %}
-        {% for question in test.questions %}
-            <h2>Question {{ questionNumber }}: {{ question.category }}</h2>
+        <form method="post" action="#">
+            {% set questionNumber = 1 %}
+            {% for question in test.questions %}
+                <div class="question">
+                    <h2 class="question-title">Question {{ questionNumber }}: {{ question.category }}</h2>
 
-            <p>{{ question.content }}</p>
+                    <p>{{ question.content }}</p>
 
-            {% for answer in question.answers %}
-                <input type="radio" name="question[{{ question.id }}]" value="{{ answer.assignedIdentifier }}" /> {{ answer.content }} <br>
+                    {% for answer in question.answers %}
+                        <input type="radio" name="question[{{ question.id }}]"
+                               value="{{ answer.assignedIdentifier }}"/> {{ answer.content }} <br>
+                    {% endfor %}
+
+                    {% set questionNumber = questionNumber + 1 %}
+                </div>
             {% endfor %}
+        </form>
+    </div>
 
-            {% set questionNumber = questionNumber + 1 %}
-        {% endfor %}
-    </form>
+    <div id="sidebar" class="col-md-3">
+        <div class="sidebar-content">
+            <h3>Time Spent</h3>
+
+            <p>39:49</p>
+
+            <h3>Jump to Question</h3>
+
+            <div class="question-navigator">
+                {% set questionNumber = 1 %}
+                {% for question in test.questions %}
+                    <a href="#" class="btn btn-primary question-navigator-link">Question {{ questionNumber }}</a>
+
+                    {% set questionNumber = questionNumber + 1 %}
+                {% endfor %}
+            </div>
+
+            <h3>Test Operations</h3>
+
+            <a class="btn btn-primary" href="#">Submit Test</a>
+        </div>
+    </div>
 {% endblock %}
