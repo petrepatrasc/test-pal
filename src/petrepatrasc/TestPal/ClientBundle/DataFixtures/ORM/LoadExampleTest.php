@@ -42,7 +42,8 @@ class LoadExampleTest implements FixtureInterface
     {
         $test = new Test();
         $test->setName('Senior PHP Developer')
-            ->setPermalink('senior-php-dev-hhvm');
+            ->setPermalink('senior-php-dev-hhvm')
+            ->setLength(60);
 
         return $test;
     }
@@ -54,20 +55,16 @@ class LoadExampleTest implements FixtureInterface
     protected function setUpQuestionOne($test)
     {
         $answerOne = new Answer();
-        $answerOne->setAssignedIdentifier('a')
-            ->setContent('Change will always be a problem');
+        $answerOne->setContent('Change will always be a problem');
 
         $answerTwo = new Answer();
-        $answerTwo->setAssignedIdentifier('b')
-            ->setContent('Change must be restricted');
+        $answerTwo->setContent('Change must be restricted');
 
         $answerThree = new Answer();
-        $answerThree->setAssignedIdentifier('c')
-            ->setContent('Change will cause delays to the timescale');
+        $answerThree->setContent('Change will cause delays to the timescale');
 
         $answerFour = new Answer();
-        $answerFour->setAssignedIdentifier('d')
-            ->setContent('Change is inevitable');
+        $answerFour->setContent('Change is inevitable');
 
         $answers = new ArrayCollection();
         $answers->add($answerOne);
@@ -77,7 +74,7 @@ class LoadExampleTest implements FixtureInterface
 
         $question = new Question();
         $question->setContent('Stakeholders must be prepared to accept that, as they understand more about the solution being developed:')
-            ->setCorrectAnswerIdentifier('d')
+            ->setCorrectAnswer($answerFour)
             ->setAnswers($answers)
             ->setCategory('Agile')
             ->setTest($test);
@@ -92,20 +89,16 @@ class LoadExampleTest implements FixtureInterface
     protected function setUpQuestionTwo($test)
     {
         $answerOne = new Answer();
-        $answerOne->setAssignedIdentifier('a')
-            ->setContent('Deliver on time');
+        $answerOne->setContent('Deliver on time');
 
         $answerTwo = new Answer();
-        $answerTwo->setAssignedIdentifier('b')
-            ->setContent('Collaborate');
+        $answerTwo->setContent('Collaborate');
 
         $answerThree = new Answer();
-        $answerThree->setAssignedIdentifier('c')
-            ->setContent('Never compromise quality');
+        $answerThree->setContent('Never compromise quality');
 
         $answerFour = new Answer();
-        $answerFour->setAssignedIdentifier('d')
-            ->setContent('Build incrementally from firm foundations');
+        $answerFour->setContent('Build incrementally from firm foundations');
 
         $answers = new ArrayCollection();
         $answers->add($answerOne);
@@ -115,7 +108,7 @@ class LoadExampleTest implements FixtureInterface
 
         $question = new Question();
         $question->setContent('Which Atern principle is specifically supported by the concept of ‘Build a one-team culture’?')
-            ->setCorrectAnswerIdentifier('b')
+            ->setCorrectAnswer($answerTwo)
             ->setAnswers($answers)
             ->setCategory('Atern')
             ->setTest($test);
@@ -130,23 +123,19 @@ class LoadExampleTest implements FixtureInterface
     protected function setUpQuestionThree($test)
     {
         $answerOne = new Answer();
-        $answerOne->setAssignedIdentifier('a')
-            ->setContent('.. plans the detail of the actual delivery of the product(s), but validates the outcome
+        $answerOne->setContent('.. plans the detail of the actual delivery of the product(s), but validates the outcome
 with a Facilitated Workshop, in line with the Atern concept of empowerment');
 
         $answerTwo = new Answer();
-        $answerTwo->setAssignedIdentifier('b')
-            ->setContent('.. is empowered to replace the Timebox Plans with better ones that s/he has created');
+        $answerTwo->setContent('.. is empowered to replace the Timebox Plans with better ones that s/he has created');
 
         $answerThree = new Answer();
-        $answerThree->setAssignedIdentifier('c')
-            ->setContent('.. has to delegate responsibility to the Solution Development Team, but still needs to
+        $answerThree->setContent('.. has to delegate responsibility to the Solution Development Team, but still needs to
 be the final decision maker for all day-to-day decisions, to ensure the right solution is
 actually created.');
 
         $answerFour = new Answer();
-        $answerFour->setAssignedIdentifier('d')
-            ->setContent('.. is expected to leave the detailed planning of the actual delivery of the product(s) to
+        $answerFour->setContent('.. is expected to leave the detailed planning of the actual delivery of the product(s) to
 the Team Leader and members of the Solution Development Team, in line with the
 Atern concept of empowerment');
 
@@ -158,7 +147,7 @@ Atern concept of empowerment');
 
         $question = new Question();
         $question->setContent('The Agile Project Manager…')
-            ->setCorrectAnswerIdentifier('d')
+            ->setCorrectAnswer($answerFour)
             ->setAnswers($answers)
             ->setCategory('Roles')
             ->setTest($test);
@@ -173,22 +162,18 @@ Atern concept of empowerment');
     protected function setUpQuestionFour($test)
     {
         $answerOne = new Answer();
-        $answerOne->setAssignedIdentifier('a')
-            ->setContent('Models can be temporary, transient, throwaway or may be a prototype which forms
+        $answerOne->setContent('Models can be temporary, transient, throwaway or may be a prototype which forms
 part of the eventual solution');
 
         $answerTwo = new Answer();
-        $answerTwo->setAssignedIdentifier('b')
-            ->setContent('Object oriented modelling is a mandated part of Atern');
+        $answerTwo->setContent('Object oriented modelling is a mandated part of Atern');
 
         $answerThree = new Answer();
-        $answerThree->setAssignedIdentifier('c')
-            ->setContent('Atern encourages formal modelling techniques, preferably in an electronic format, so
+        $answerThree->setContent('Atern encourages formal modelling techniques, preferably in an electronic format, so
 they can be properly controlled');
 
         $answerFour = new Answer();
-        $answerFour->setAssignedIdentifier('d')
-            ->setContent('Models are always temporary, and are superceded once the real work starts');
+        $answerFour->setContent('Models are always temporary, and are superceded once the real work starts');
 
         $answers = new ArrayCollection();
         $answers->add($answerOne);
@@ -198,7 +183,7 @@ they can be properly controlled');
 
         $question = new Question();
         $question->setContent('Which of the following statements is true?')
-            ->setCorrectAnswerIdentifier('d')
+            ->setCorrectAnswer($answerFour)
             ->setAnswers($answers)
             ->setCategory('Agile')
             ->setTest($test);

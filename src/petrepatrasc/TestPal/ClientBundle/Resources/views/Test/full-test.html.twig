@@ -1,42 +1,32 @@
 {% extends '@TestPalClient/Layout/test-layout.html.twig' %}
 
-{% block title %}{{ test.name }} - {{ parent() }}{% endblock %}
+{% block title %}{{ examination.test.name }} - {{ parent() }}{% endblock %}
 
 {% block content %}
     <div id="main-content" class="col-sm-9">
-        <h1>{{ test.name }}</h1>
-
-        <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before we
-            get
-            started.</p>
-
-        <ul>
-            <li>The exam lasts <strong>60</strong> minutes. A timer will be displayed on the right-hand side of the
-                screen
-                in order to display the time still left in the exam.
-            </li>
-            <li>We do not give points for leaving early so make sure you use the entire time at your disposal.</li>
-            <li>This exam contains <strong>60</strong> questions. The questions will cover a variety of subjects.</li>
-        </ul>
+        <h1>{{ examination.test.name }}</h1>
 
         <div class="questions">
             <form method="post" action="#">
                 {% set questionNumber = 1 %}
-                {% for question in test.questions %}
+                {% for question in examination.test.questions %}
                     <div class="question">
                         <h2 id="question_link_{{ question.id }}" class="question-title">Question {{ questionNumber }}: {{ question.category }}</h2>
 
                         <p>{{ question.content }}</p>
 
                         <div class="answers">
+                            {% set answerNumber = 1 %}
                             {% for answer in question.answers %}
                                 <div class="answer-entry">
                                     <input type="radio" id="answer_{{ answer.id }}" class="answer-radio css-checkbox"
                                            name="question_{{ question.id }}"
-                                           value="{{ answer.assignedIdentifier }}"/> <label
+                                           value="{{ answer.id }}"/> <label
                                             class="answer-label css-label"
                                             for="answer_{{ answer.id }}">{{ answer.content }}</label>
                                 </div>
+
+                                {% set answerNumber = answerNumber + 1 %}
                             {% endfor %}
                         </div>
 
@@ -57,9 +47,9 @@
 
             <div class="question-navigator">
                 {% set questionNumber = 1 %}
-                {% for question in test.questions %}
+                {% for question in examination.test.questions %}
                     <a href="#question_link_{{ question.id }}" id="question_{{ question.id }}"
-                       class="btn btn-warning question-navigator-link">Question {{ questionNumber }}</a>
+                       class="btn btn-warning question-navigator-link">Que {{ questionNumber }}</a>
 
                     {% set questionNumber = questionNumber + 1 %}
                 {% endfor %}
@@ -90,12 +80,7 @@
         }
 
         function setUpCountDown() {
-            var currentDate = new Date();
-            currentDate.addHours(1);
-
-            var currentDateString = currentDate.format('yyyy/mm/dd HH:MM:ss')
-
-            $('.countdown-timer').countdown(currentDateString, function (event) {
+            $('.countdown-timer').countdown('{{ examination.endTime | date('Y/m/d H:i:s') }}', function (event) {
                 $(this).text(event.strftime('%H hours %M minutes %S seconds'))
             });
         }
@@ -119,7 +104,7 @@
 
         $(document).ready(function () {
             setUpCountDown();
-            questionsNumber = {{ test.questions | length }};
+            questionsNumber = {{ examination.test.questions | length }};
             submitTestElement = $('#submit-test-element');
 
             $('input[type="radio"]').change(function () {

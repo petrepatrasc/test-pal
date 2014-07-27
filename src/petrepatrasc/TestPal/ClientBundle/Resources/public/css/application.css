@@ -11,6 +11,10 @@ body {
     padding: 1.5em;
 }
 
+#main-content .form {
+    padding-bottom: 5em;
+}
+
 #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 {
     border-bottom: 1px dotted;
     color: #369;
@@ -19,7 +23,7 @@ body {
 }
 
 #main-content .questions {
-    margin-top: 3em;
+    margin-top: 2em;
 }
 
 #main-content .answers {

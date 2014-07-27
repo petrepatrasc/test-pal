@@ -1,3 +1,11 @@
+tp_test_information:
+    pattern:    /test/{permalink}
+    defaults:   { _controller: TestPalClientBundle:Test:displayTestInformation }
+
 tp_test_start:
-    pattern:    /test/start/{permalink}
+    pattern:    /test/{permalink}/start
     defaults:   { _controller: TestPalClientBundle:Test:startTest }
+
+tp_test_display_questions:
+    pattern:    /test/{permalink}/questions/{userKey}
+    defaults:   { _controller: TestPalClientBundle:Test:displayQuestions }

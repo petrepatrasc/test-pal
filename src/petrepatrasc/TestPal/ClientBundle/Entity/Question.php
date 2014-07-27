@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="question")
+ * @ORM\HasLifecycleCallbacks
  */
 class Question extends EntityBase
 {
@@ -43,10 +44,11 @@ class Question extends EntityBase
     protected $category;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", name="correct_answer_identifier")
+     * @var Answer
+     * @ORM\OneToOne(targetEntity="petrepatrasc\TestPal\ClientBundle\Entity\Answer")
+     * @ORM\JoinColumn(name="correct_answer_id", referencedColumnName="id")
      */
-    protected $correctAnswerIdentifier;
+    protected $correctAnswer;
 
     /**
      * @param \Doctrine\Common\Collections\ArrayCollection $answers
@@ -103,24 +105,6 @@ class Question extends EntityBase
     }
 
     /**
-     * @param string $correctAnswerIdentifier
-     * @return $this
-     */
-    public function setCorrectAnswerIdentifier($correctAnswerIdentifier)
-    {
-        $this->correctAnswerIdentifier = $correctAnswerIdentifier;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCorrectAnswerIdentifier()
-    {
-        return $this->correctAnswerIdentifier;
-    }
-
-    /**
      * @param \petrepatrasc\TestPal\ClientBundle\Entity\Test $test
      * @return $this
      */
@@ -136,6 +120,24 @@ class Question extends EntityBase
     public function getTest()
     {
         return $this->test;
+    }
+
+    /**
+     * @param \petrepatrasc\TestPal\ClientBundle\Entity\Answer $correctAnswer
+     * @return $this
+     */
+    public function setCorrectAnswer($correctAnswer)
+    {
+        $this->correctAnswer = $correctAnswer;
+        return $this;
+    }
+
+    /**
+     * @return \petrepatrasc\TestPal\ClientBundle\Entity\Answer
+     */
+    public function getCorrectAnswer()
+    {
+        return $this->correctAnswer;
     }
 
 

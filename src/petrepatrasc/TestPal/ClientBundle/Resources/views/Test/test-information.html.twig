@@ -1,0 +1,71 @@
+{% extends '@TestPalClient/Layout/test-layout.html.twig' %}
+
+{% block content %}
+    <div id="main-content" class="col-lg-12">
+        <h1>{{ test.name }}</h1>
+
+        <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before
+            starting the test:</p>
+
+        <p>The exam lasts <strong>{{ test.length }}</strong> minutes. A timer will be shown on the right-hand side of the
+            screen in order to display the time still left in the exam. Please make sure to submit your test before
+            the timer runs out, or all of your answers will be lost.
+        </p>
+
+        <p>We do not give points for leaving early so make sure to use the full extent of time if required.</p>
+
+        <p>This exam contains <strong>{{ test.questions | length }}</strong> questions. The questions will cover a
+            variety of subjects from the following categories:
+        <ol>
+            {% for category in testCategories %}
+                <li>{{ category }}</li>
+            {% endfor %}
+        </ol>
+        </p>
+        <p>The sidebar contains the following interfaces:
+        <ol>
+            <li>A clock indicating the time left in your exam.</li>
+            <li>A navigator so that you can easily jump to any question in the exam. The questions will turn from orange
+                to green as you select answers for each of them.
+            </li>
+            <li>A progress bar indicating the number of questions that you have answered so far. The bar will turn green
+                when all of the questions have been answered.
+            </li>
+            <li>A test submit button, allowing you to submit the answers to the exam. The button will be red, but will
+                turn green when all of the questions have been answered.
+            </li>
+        </ol>
+        </p>
+
+        <h2>Starting the exam</h2>
+
+        <p>If you have read the information above and are ready to start the exam, fill in your full name below and
+            click on the <em>Start exam</em> button. Good luck!</p>
+
+        <form class="form" method="POST" action="{{ path('tp_test_start', {'permalink': test.permalink}) }}">
+            <div class="form-group col-md-6">
+                <input class="input-lg text-center form-control" type="text" name="fullname" id="fullname"
+                       placeholder="Full Name (John Smith)"/>
+                <br/>
+                <input class="btn btn-lg btn-success col-xs-12" type="submit" value="Start exam!"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form').submit(function(event){
+                var fullName = $('#fullname').val();
+
+                if (fullName == '') {
+                    alert('Please fill in your name before starting the test.');
+                    return false;
+                }
+            });
+        });
+    </script>
+{% endblock %}

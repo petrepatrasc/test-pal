@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="test")
+ * @ORM\HasLifecycleCallbacks
  */
 class Test extends EntityBase
 {
@@ -35,6 +36,12 @@ class Test extends EntityBase
      * @ORM\OneToMany(targetEntity="petrepatrasc\TestPal\ClientBundle\Entity\Question", mappedBy="test", cascade={"persist", "remove"})
      */
     protected $questions;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", name="length")
+     */
+    protected $length;
 
     /**
      * @param string $name
@@ -88,6 +95,24 @@ class Test extends EntityBase
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    /**
+     * @param int $length
+     * @return $this
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLength()
+    {
+        return $this->length;
     }
 
 

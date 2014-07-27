@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="answer")
+ * @ORM\HasLifecycleCallbacks
  */
 class Answer extends EntityBase
 {
@@ -17,30 +18,6 @@ class Answer extends EntityBase
      * @ORM\Column(type="text", name="content")
      */
     protected $content;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", name="identifier")
-     */
-    protected $assignedIdentifier;
-
-    /**
-     * @param string $assignedIdentifier
-     * @return $this
-     */
-    public function setAssignedIdentifier($assignedIdentifier)
-    {
-        $this->assignedIdentifier = $assignedIdentifier;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAssignedIdentifier()
-    {
-        return $this->assignedIdentifier;
-    }
 
     /**
      * @param string $content
