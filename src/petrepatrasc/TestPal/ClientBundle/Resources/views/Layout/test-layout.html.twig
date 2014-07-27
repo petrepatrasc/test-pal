@@ -13,3 +13,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/date-format.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/jquery.countdown.min.js') }}"></script>
+{% endblock %}

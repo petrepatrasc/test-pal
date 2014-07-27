@@ -3,7 +3,7 @@
 {% block title %}{{ test.name }} - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div id="main-content" class="col-lg-9">
+    <div id="main-content" class="col-sm-9">
         <h1>{{ test.name }}</h1>
 
         <p>Welcome to this exam for the {{ test.name }} position. Here are a couple of things you should know before we
@@ -47,18 +47,18 @@
         </div>
     </div>
 
-    <div id="sidebar" class="col-lg-3">
+    <div id="sidebar" class="col-sm-3">
         <div class="sidebar-content">
-            <h3>Time Spent</h3>
+            <h3>Time Remaining</h3>
 
-            <p>39:49</p>
+            <p class="countdown-timer"></p>
 
             <h3>Jump to Question</h3>
 
             <div class="question-navigator">
                 {% set questionNumber = 1 %}
                 {% for question in test.questions %}
-                    <a href="#" class="btn btn-primary question-navigator-link">Question {{ questionNumber }}</a>
+                    <a href="#" class="btn btn-warning question-navigator-link">Question {{ questionNumber }}</a>
 
                     {% set questionNumber = questionNumber + 1 %}
                 {% endfor %}
@@ -66,7 +66,29 @@
 
             <h3>Test Operations</h3>
 
-            <a class="btn btn-primary" href="#">Submit Test</a>
+            <a class="btn btn-lg btn-primary col-lg-11" href="#">Submit Test</a>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        Date.prototype.addHours = function(h) {
+            this.setTime(this.getTime() + (h*60*60*1000));
+            return this;
+        }
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            currentDate.addHours(1);
+
+            var currentDateString = currentDate.format('yyyy/mm/dd HH:MM:ss')
+
+            $('.countdown-timer').countdown(currentDateString, function (event) {
+                $(this).text(event.strftime('%H hours %M minutes %S seconds'))
+            });
+        });
+    </script>
 {% endblock %}

@@ -11,6 +11,7 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/jquery-2.1.1.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
