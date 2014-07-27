@@ -1,0 +1,14 @@
+{% extends '@TestPalClient/Layout/test-layout.html.twig' %}
+
+{% block content %}
+    <div id="main-content" class="col-lg-12">
+        <h1>Test results</h1>
+
+        <p>Dear {{ examination.candidateName }},</p>
+
+        <p>Your results can be found below:</p>
+
+        <p>You answered {{ examination.score }} / {{ examination.test.questions | length }} questions in this exam, and
+            scored {{ (examination.score / examination.test.questions | length) * 100 }}%.</p>
+    </div>
+{% endblock %}

@@ -9,3 +9,11 @@ tp_test_start:
 tp_test_display_questions:
     pattern:    /test/{permalink}/questions/{userKey}
     defaults:   { _controller: TestPalClientBundle:Test:displayQuestions }
+
+tp_test_submit:
+    pattern:    /test/{permalink}/submit/{userKey}
+    defaults:   { _controller: TestPalClientBundle:Test:submitTest }
+
+tp_test_results:
+    pattern:    /test/{permalink}/results/{userKey}
+    defaults:   { _controller: TestPalClientBundle:Test:showResults }

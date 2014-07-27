@@ -33,6 +33,18 @@ class Examination extends EntityBase
     protected $endTime;
 
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", name="finished")
+     */
+    protected $finished = false;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", name="score")
+     */
+    protected $score = 0;
+
+    /**
      * @var string
      * @ORM\Column(type="string", name="user_key")
      * @Assert\NotNull
@@ -115,6 +127,42 @@ class Examination extends EntityBase
     public function getUserKey()
     {
         return $this->userKey;
+    }
+
+    /**
+     * @param boolean $finished
+     * @return $this
+     */
+    public function setFinished($finished)
+    {
+        $this->finished = $finished;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getFinished()
+    {
+        return $this->finished;
+    }
+
+    /**
+     * @param int $score
+     * @return $this
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
 

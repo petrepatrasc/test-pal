@@ -7,7 +7,7 @@
         <h1>{{ examination.test.name }}</h1>
 
         <div class="questions">
-            <form method="post" action="#">
+            <form method="post" id="exam-form" action="{{ path('tp_test_submit', {'permalink': examination.test.permalink, 'userKey': examination.userKey}) }}">
                 {% set questionNumber = 1 %}
                 {% for question in examination.test.questions %}
                     <div class="question">
@@ -106,6 +106,10 @@
             setUpCountDown();
             questionsNumber = {{ examination.test.questions | length }};
             submitTestElement = $('#submit-test-element');
+
+            submitTestElement.click(function(event){
+                $('#exam-form').submit();
+            });
 
             $('input[type="radio"]').change(function () {
                 var questionId = $(this).attr('name');
