@@ -9,13 +9,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\Serializer;
 use petrepatrasc\TestPal\ApiBundle\Entity\Question;
 
-class QuestionService
+class QuestionService extends RestService
 {
-    /**
-     * @var ObjectManager
-     */
-    protected $manager;
-
     /**
      * @var Serializer
      */
@@ -23,11 +18,12 @@ class QuestionService
 
     public function __construct(ObjectManager $manager, Serializer $serializer)
     {
-        $this->manager = $manager;
+        parent::__construct($manager);
+
         $this->serializer = $serializer;
     }
 
-    public function scrambleAnswersForQuestionCollection(array $questions)
+    public function scrambleAnswersForQuestionArray(array $questions)
     {
         /** @var Question $question */
         foreach ($questions as $question) {
@@ -70,34 +66,15 @@ class QuestionService
 
     public function readOneById($id)
     {
-        $query = $this->manager->createQuery("
-            SELECT q FROM TestPalApiBundle:Question q
-            WHERE q.id = ?1
-        ");
+        return $this->manager->getRepository('TestPalApiBundle:Question')->readOneById($id);
+    }
 
-        $query->setMaxResults(1);
-        $query->setParameter(1, $id);
-
-        $question = $query->getSingleResult();
-
-        return $question;
+    public function readAllByTestPermalink($permalink) {
+        return $this->manager->getRepository('TestPalApiBundle:Question')->readAllByTestPermalink($permalink);
     }
 
     public function readOneByPermalinkAndId($permalink, $id)
     {
-        $query = $this->manager->createQuery("
-            SELECT q FROM TestPalApiBundle:Question q
-            JOIN TestPalApiBundle:Test t
-            WHERE q.id = ?1
-            AND t.permalink = ?2
-        ");
-
-        $query->setMaxResults(1);
-        $query->setParameter(1, $id);
-        $query->setParameter(2, $permalink);
-
-        $question = $query->getSingleResult();
-
-        return $question;
+        return $this->manager->getRepository('TestPalApiBundle:Question')->readOneByPermalinkAndId($permalink, $id);
     }
 }

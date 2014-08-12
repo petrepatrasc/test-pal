@@ -40,7 +40,9 @@ class RestService
 
     public function deleteOne($entity)
     {
-        $this->manager->remove($entity);
+        $entity->setDeleted(true);
+
+        $this->manager->persist($entity);
         $this->manager->flush();
 
         return true;

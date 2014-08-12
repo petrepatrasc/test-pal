@@ -8,26 +8,26 @@ use FOS\RestBundle\Controller\FOSRestController;
 use petrepatrasc\TestPal\ApiBundle\Entity\Test;
 use Symfony\Component\HttpFoundation\Request;
 
-class TestController extends FOSRestController implements RestInterface
+class TestController extends BaseController implements RestInterface
 {
     const ENTITY_NAME = 'Test';
 
     public function readAllAction()
     {
-        $tests = $this->get('testpal_rest_service')->readAll(self::ENTITY_NAME);
+        $tests = $this->get('testpal_test_service')->readAll(self::ENTITY_NAME);
 
-        $view = $this->view($tests, 200);
-        return $this->handleView($view);
+        return $this->sendResponse($tests);
     }
 
     public function readOneAction($permalink)
     {
-        $test = $this->get('testpal_rest_service')->readOne(self::ENTITY_NAME, [
-            'permalink' => $permalink,
-        ]);
+        $test = $this->get('testpal_test_service')->readOneByPermalink($permalink);
 
-        $view = $this->view($test, 200);
-        return $this->handleView($view);
+        if (null === $test) {
+            return $this->sendResourceNotFound();
+        }
+
+        return $this->sendResponse($test);
     }
 
     public function createOneAction(Request $request)
@@ -36,36 +36,38 @@ class TestController extends FOSRestController implements RestInterface
 
         $test = $this->get('testpal_test_service')->deserializeTest($testData);
         $test->setPermalink($this->get('testpal_test_service')->generatePermalink($test->getName()));
-        $test = $this->get('testpal_rest_service')->updateOne($test);
 
-        $view = $this->view($test, 201);
-        return $this->handleView($view);
+        $test = $this->get('testpal_test_service')->updateOne($test);
+
+        return $this->sendResponse($test, 201);
     }
 
     public function updateOneAction(Request $request, $permalink)
     {
         $testData = $request->getContent();
 
-        $parentEntity = $this->get('testpal_rest_service')->readOne(self::ENTITY_NAME, [
-            'permalink' => $permalink
-        ]);
+        $parentEntity = $this->get('testpal_test_service')->readOneByPermalink($permalink);
+        if (null === $parentEntity) {
+            return $this->sendResourceNotFound();
+        }
+
         $childEntity = $this->get('testpal_test_service')->deserializeTest($testData);
 
         $parentEntity = $this->get('testpal_test_service')->mergeTestEntity($parentEntity, $childEntity);
-        $parentEntity = $this->get('testpal_rest_service')->updateOne($parentEntity);
+        $parentEntity = $this->get('testpal_test_service')->updateOne($parentEntity);
 
-        $view = $this->view($parentEntity, 200);
-        return $this->handleView($view);
+        return $this->sendResponse($parentEntity, 200);
     }
 
     public function deleteOneAction($permalink) {
-        $test = $this->get('testpal_rest_service')->readOne(self::ENTITY_NAME, [
-            'permalink' => $permalink,
-        ]);
+        $test = $this->get('testpal_test_service')->readOneByPermalink($permalink);
 
-        $this->get('testpal_rest_service')->deleteOne($test);
+        if (null === $test) {
+            return $this->sendResourceNotFound();
+        }
 
-        $view = $this->view(null, 204);
-        return $this->handleView($view);
+        $this->get('testpal_test_service')->deleteOne($test);
+
+        return $this->sendResponse(null, 204);
     }
 }

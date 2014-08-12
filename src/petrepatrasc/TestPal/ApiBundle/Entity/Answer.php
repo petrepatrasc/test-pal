@@ -4,7 +4,6 @@
 namespace petrepatrasc\TestPal\ApiBundle\Entity;
 
 
-use Cegeka\SymfonyToolkitBundle\Entity\EntityBase;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 

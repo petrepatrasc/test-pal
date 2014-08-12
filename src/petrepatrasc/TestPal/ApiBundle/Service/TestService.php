@@ -5,28 +5,27 @@ namespace petrepatrasc\TestPal\ApiBundle\Service;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\Serializer;
 use petrepatrasc\TestPal\ApiBundle\Entity\Test;
 
-class TestService
+class TestService extends RestService
 {
     /**
      * @var Serializer
      */
     protected $serializer;
 
-    public function __construct(Serializer $serializer)
+    public function __construct(ObjectManager $manager, Serializer $serializer)
     {
+        parent::__construct($manager);
+
         $this->serializer = $serializer;
     }
 
-    public function scrambleQuestions(Test $test)
+    public function scrambleQuestions(array $questions)
     {
-        $questions = $test->getQuestions()->toArray();
         shuffle($questions);
-
-        $questionsCollection = new ArrayCollection($questions);
-        $test->setQuestions($questionsCollection);
 
         return $questions;
     }
@@ -50,6 +49,16 @@ class TestService
         $test = $this->serializer->deserialize($json, 'petrepatrasc\TestPal\ApiBundle\Entity\Test', $format);
 
         return $test;
+    }
+
+    public function readAll()
+    {
+        return $this->manager->getRepository('TestPalApiBundle:Test')->readAll();
+    }
+
+    public function readOneByPermalink($permalink)
+    {
+        return $this->manager->getRepository('TestPalApiBundle:Test')->readOneByPermalink($permalink);
     }
 
     public function generatePermalink($name)

@@ -3,14 +3,12 @@
 
 namespace petrepatrasc\TestPal\ApiBundle\Entity;
 
-
-use Cegeka\SymfonyToolkitBundle\Entity\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="petrepatrasc\TestPal\ApiBundle\Repository\QuestionRepository")
  * @ORM\Table(name="question")
  * @ORM\HasLifecycleCallbacks
  */
@@ -42,7 +40,7 @@ class Question extends EntityBase
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Answer", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Answer", cascade={"persist"})
      */
     protected $answers;
 

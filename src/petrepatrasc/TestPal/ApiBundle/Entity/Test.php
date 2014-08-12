@@ -6,13 +6,13 @@ namespace petrepatrasc\TestPal\ApiBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-use Cegeka\SymfonyToolkitBundle\Entity\EntityBase;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="petrepatrasc\TestPal\ApiBundle\Repository\TestRepository")
  * @ORM\Table(name="test")
  * @ORM\HasLifecycleCallbacks
+ * @JMS\ExclusionPolicy("none")
  */
 class Test extends EntityBase
 {
@@ -47,7 +47,7 @@ class Test extends EntityBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Question", mappedBy="test", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Question", mappedBy="test", cascade={"persist"})
      * @JMS\Exclude()
      */
     protected $questions;
