@@ -23,8 +23,7 @@ class QuestionController extends BaseController
         $questions = $this->get('testpal_test_service')->scrambleQuestions($questions);
         $this->get('testpal_question_service')->scrambleAnswersForQuestionArray($questions);
 
-        $view = $this->view($questions, 200);
-        return $this->handleView($view);
+        return $this->sendResponse($questions);
     }
 
     public function readOneAction($id)
@@ -36,8 +35,7 @@ class QuestionController extends BaseController
 
         $this->get('testpal_question_service')->scrambleAnswersForQuestionEntity($question);
 
-        $view = $this->view($question, 200);
-        return $this->handleView($view);
+        return $this->sendResponse($question);
     }
 
     public function createOneAction(Request $request, $permalink)
@@ -50,10 +48,9 @@ class QuestionController extends BaseController
         $question = $this->get('testpal_question_service')->deserializeQuestion($questionData);
         $question->setTest($test);
 
-        $this->get('testpal_test_service')->updateOne($question);
+        $this->get('testpal_question_service')->updateOne($question);
 
-        $view = $this->view($question, 201);
-        return $this->handleView($view);
+        return $this->sendResponse($question, 201);
     }
 
     public function updateOneAction(Request $request, $id)
@@ -68,10 +65,9 @@ class QuestionController extends BaseController
         $childQuestion = $this->get('testpal_question_service')->deserializeQuestion($questionData);
 
         $parentQuestion = $this->get('testpal_question_service')->mergeQuestionEntity($parentQuestion, $childQuestion);
-        $this->get('testpal_test_service')->updateOne($parentQuestion);
+        $this->get('testpal_question_service')->updateOne($parentQuestion);
 
-        $view = $this->view($parentQuestion, 200);
-        return $this->handleView($view);
+        return $this->sendResponse($parentQuestion, 200);
     }
 
     public function deleteOneAction($id)
@@ -81,9 +77,8 @@ class QuestionController extends BaseController
             return $this->sendResourceNotFound();
         }
 
-        $this->get('testpal_test_service')->deleteOne($question);
+        $this->get('testpal_question_service')->deleteOne($question);
 
-        $view = $this->view(null, 204);
-        return $this->handleView($view);
+        return $this->sendResponse(null, 204);
     }
 } 

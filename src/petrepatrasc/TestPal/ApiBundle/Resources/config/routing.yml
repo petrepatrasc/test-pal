@@ -3,3 +3,6 @@ testpal_test_routing:
 
 testpal_question_routing:
     resource: "@TestPalApiBundle/Resources/config/routing/question.yml"
+
+testpal_answer_routing:
+    resource: "@TestPalApiBundle/Resources/config/routing/answer.yml"

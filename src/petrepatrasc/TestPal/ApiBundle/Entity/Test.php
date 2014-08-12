@@ -130,6 +130,7 @@ class Test extends EntityBase
     public function addQuestion(\petrepatrasc\TestPal\ApiBundle\Entity\Question $questions)
     {
         $this->questions[] = $questions;
+        $questions->setTest($this);
 
         return $this;
     }
@@ -142,6 +143,7 @@ class Test extends EntityBase
     public function removeQuestion(\petrepatrasc\TestPal\ApiBundle\Entity\Question $questions)
     {
         $this->questions->removeElement($questions);
+        $questions->setTest(null);
     }
 
     /**

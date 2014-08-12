@@ -13,7 +13,7 @@ class QuestionRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQuery("
             SELECT q FROM TestPalApiBundle:Question q
-            JOIN TestPalApiBundle:Test t
+            JOIN TestPalApiBundle:Test t WITH t.id = q.test
             WHERE q.deleted = false
             AND t.permalink = :permalink
             AND t.deleted = false

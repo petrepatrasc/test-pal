@@ -8,15 +8,17 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="petrepatrasc\TestPal\ApiBundle\Repository\AnswerRepository")
  * @ORM\Table(name="answer")
  * @ORM\HasLifecycleCallbacks
+ * @JMS\ExclusionPolicy("none")
  */
 class Answer extends EntityBase
 {
     /**
      * @var Question
-     * @ORM\ManyToOne(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Question", inversedBy="answers")
+     * @JMS\Exclude()
      */
     protected $question;
 

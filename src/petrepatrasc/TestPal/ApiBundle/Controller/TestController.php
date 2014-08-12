@@ -4,8 +4,6 @@
 namespace petrepatrasc\TestPal\ApiBundle\Controller;
 
 
-use FOS\RestBundle\Controller\FOSRestController;
-use petrepatrasc\TestPal\ApiBundle\Entity\Test;
 use Symfony\Component\HttpFoundation\Request;
 
 class TestController extends BaseController implements RestInterface

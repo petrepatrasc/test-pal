@@ -11,6 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Entity(repositoryClass="petrepatrasc\TestPal\ApiBundle\Repository\QuestionRepository")
  * @ORM\Table(name="question")
  * @ORM\HasLifecycleCallbacks
+ * @JMS\ExclusionPolicy("none")
  */
 class Question extends EntityBase
 {
@@ -40,7 +41,7 @@ class Question extends EntityBase
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Answer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Answer", mappedBy="question", cascade={"persist"})
      */
     protected $answers;
 
@@ -130,6 +131,7 @@ class Question extends EntityBase
     public function addAnswer(\petrepatrasc\TestPal\ApiBundle\Entity\Answer $answers)
     {
         $this->answers[] = $answers;
+        $answers->setQuestion($this);
 
         return $this;
     }
@@ -142,6 +144,7 @@ class Question extends EntityBase
     public function removeAnswer(\petrepatrasc\TestPal\ApiBundle\Entity\Answer $answers)
     {
         $this->answers->removeElement($answers);
+        $answers->setQuestion(null);
     }
 
     /**
