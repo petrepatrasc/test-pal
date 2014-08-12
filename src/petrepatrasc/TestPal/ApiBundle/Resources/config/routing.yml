@@ -1,3 +1,5 @@
-testpal_tests_routing:
+testpal_test_routing:
     resource: "@TestPalApiBundle/Resources/config/routing/test.yml"
-    prefix: /tests/
+
+testpal_question_routing:
+    resource: "@TestPalApiBundle/Resources/config/routing/question.yml"

@@ -9,3 +9,7 @@ services:
     testpal_test_service:
         class: petrepatrasc\TestPal\ApiBundle\Service\TestService
         arguments: [@jms_serializer]
+
+    testpal_question_service:
+        class: petrepatrasc\TestPal\ApiBundle\Service\QuestionService
+        arguments: [@doctrine.orm.entity_manager, @jms_serializer]
