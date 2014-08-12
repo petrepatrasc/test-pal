@@ -31,9 +31,9 @@ class QuestionController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function readOneAction($permalink, $id)
+    public function readOneAction($id)
     {
-        $question = $this->get('testpal_question_service')->readOne($permalink, $id);
+        $question = $this->get('testpal_question_service')->readOneById($id);
         $this->get('testpal_question_service')->scrambleAnswersForQuestionEntity($question);
 
         $view = $this->view($question, 200);
@@ -57,16 +57,11 @@ class QuestionController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function updateOneAction(Request $request, $permalink, $id)
+    public function updateOneAction(Request $request, $id)
     {
         $questionData = $request->getContent();
 
-        /** @var Test $test */
-        $test = $this->get('testpal_rest_service')->readOne(TestController::ENTITY_NAME, [
-            'permalink' => $permalink,
-        ]);
-
-        $parentQuestion = $this->get('testpal_question_service')->readOne($permalink, $id);
+        $parentQuestion = $this->get('testpal_question_service')->readOneById($id);
         $childQuestion = $this->get('testpal_question_service')->deserializeQuestion($questionData);
 
         $parentQuestion = $this->get('testpal_question_service')->mergeQuestionEntity($parentQuestion, $childQuestion);
@@ -76,9 +71,9 @@ class QuestionController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function deleteOneAction($permalink, $id)
+    public function deleteOneAction($id)
     {
-        $question = $this->get('testpal_question_service')->readOne($permalink, $id);
+        $question = $this->get('testpal_question_service')->readOneById($id);
         $this->get('testpal_rest_service')->deleteOne($question);
 
         $view = $this->view(null, 204);

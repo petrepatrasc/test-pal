@@ -68,7 +68,22 @@ class QuestionService
         return $question;
     }
 
-    public function readOne($permalink, $id)
+    public function readOneById($id)
+    {
+        $query = $this->manager->createQuery("
+            SELECT q FROM TestPalApiBundle:Question q
+            WHERE q.id = ?1
+        ");
+
+        $query->setMaxResults(1);
+        $query->setParameter(1, $id);
+
+        $question = $query->getSingleResult();
+
+        return $question;
+    }
+
+    public function readOneByPermalinkAndId($permalink, $id)
     {
         $query = $this->manager->createQuery("
             SELECT q FROM TestPalApiBundle:Question q

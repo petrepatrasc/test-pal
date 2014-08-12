@@ -3,22 +3,22 @@ testpal_question_read_all:
     defaults:   { _controller: TestPalApiBundle:Question:readAll, _format: json }
     methods:    [GET]
 
-testpal_question_read_one:
-    pattern:    /tests/{permalink}/questions/{id}
-    defaults:   { _controller: TestPalApiBundle:Question:readOne, _format: json }
-    methods:    [GET]
-
 testpal_question_create_one:
     pattern:    /tests/{permalink}/questions
     defaults:   { _controller: TestPalApiBundle:Question:createOne, _format: json }
     methods:    [POST]
 
+testpal_question_read_one:
+    pattern:    /questions/{id}
+    defaults:   { _controller: TestPalApiBundle:Question:readOne, _format: json }
+    methods:    [GET]
+
 testpal_question_update_one:
-    pattern:    /tests/{permalink}/questions/{id}
+    pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:updateOne, _format: json }
     methods:    [PUT]
 
 testpal_question_delete_one:
-    pattern:    /tests/{permalink}/questions/{id}
+    pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:deleteOne, _format: json }
     methods:    [DELETE]
