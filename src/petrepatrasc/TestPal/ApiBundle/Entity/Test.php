@@ -6,28 +6,39 @@ namespace petrepatrasc\TestPal\ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Cegeka\SymfonyToolkitBundle\Entity\EntityBase;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="test")
+ * @JMS\ExclusionPolicy("all")
  */
 class Test extends EntityBase
 {
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @JMS\Type("string")
+     * @JMS\Expose()
+     * @JMS\XmlElement(cdata=false)
      */
     protected $name;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @JMS\Type("string")
+     * @JMS\Expose()
+     * @JMS\XmlElement(cdata=false)
      */
     protected $permalink;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
+     * @JMS\Type("integer")
+     * @JMS\Expose()
+     * @JMS\XmlElement(cdata=false)
      */
     protected $length;
 
