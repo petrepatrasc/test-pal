@@ -1,0 +1,4 @@
+testpal_tests_read_all:
+    pattern: /tests
+    defaults: { _controller: TestPalApiBundle:Test:readAll, _format: json }
+    methods: [GET]

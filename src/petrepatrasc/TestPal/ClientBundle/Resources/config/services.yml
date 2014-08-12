@@ -1,7 +1,0 @@
-parameters:
-#    test_pal_client.example.class: petrepatrasc\TestPal\ClientBundle\Example
-
-services:
-#    test_pal_client.example:
-#        class: %test_pal_client.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
