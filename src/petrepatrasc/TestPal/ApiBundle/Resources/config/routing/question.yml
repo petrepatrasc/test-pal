@@ -22,3 +22,8 @@ testpal_question_delete_one:
     pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:deleteOne, _format: json }
     methods:    [DELETE]
+
+testpal_question_correct_answer:
+    pattern:    /questions/{questionId}/correct/{answerId}
+    defaults:   { _controller: TestPalApiBundle:Question:setCorrectAnswer, _format: json }
+    methods:    [PUT]

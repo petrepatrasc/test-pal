@@ -81,4 +81,19 @@ class QuestionController extends BaseController
 
         return $this->sendResponse(null, 204);
     }
+
+    public function setCorrectAnswerAction($questionId, $answerId)
+    {
+        $question = $this->get('testpal_question_service')->readOneById($questionId);
+        $answer = $this->get('testpal_answer_service')->readOneById($answerId);
+
+        if (null === $question || null === $answer) {
+            return $this->sendResourceNotFound();
+        }
+
+        $question->setCorrectAnswer($answer);
+        $this->get('testpal_question_service')->updateOne($question);
+
+        return $this->sendResponse($question);
+    }
 } 
