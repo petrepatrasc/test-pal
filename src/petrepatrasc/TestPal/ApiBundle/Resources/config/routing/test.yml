@@ -9,7 +9,7 @@ testpal.api.test.read_one:
     methods:    [GET]
 
 testpal.api.test.create_one:
-    pattern:    /tests/
+    pattern:    /tests
     defaults:   { _controller: TestPalApiBundle:Test:createOne, _format: json }
     methods:    [POST]
 
