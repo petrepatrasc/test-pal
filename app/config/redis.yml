@@ -1,0 +1,25 @@
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://localhost
+
+        doctrine:
+            type: predis
+            alias: doctrine
+            dsn: redis://localhost
+            options:
+                read_write_timeout: 30
+
+    doctrine:
+        metadata_cache:
+            client: doctrine
+            entity_manager: default
+            document_manager: default
+        result_cache:
+            client: doctrine
+            entity_manager: [default, read]
+        query_cache:
+            client: doctrine
+            entity_manager: default

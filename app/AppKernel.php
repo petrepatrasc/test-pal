@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
             new petrepatrasc\TestPal\ApiBundle\TestPalApiBundle(),
         );
 

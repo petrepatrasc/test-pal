@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: redis.yml }
 
 framework:
     #esi:             ~
@@ -57,8 +58,10 @@ doctrine:
         # path:     "%database_path%"
 
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        metadata_cache_driver: redis
+        query_cache_driver: redis
 
 # Swiftmailer Configuration
 swiftmailer:
