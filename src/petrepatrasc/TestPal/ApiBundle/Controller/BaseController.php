@@ -14,7 +14,7 @@ class BaseController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function sendResourceNotFound($message = 'Resource not found', $code = 404)
+    public function sendError($message, $code)
     {
         $data = [
             'errorCode' => $code,
@@ -22,5 +22,15 @@ class BaseController extends FOSRestController
         ];
 
         return $this->sendResponse($data, $code);
+    }
+
+    public function sendResourceNotFound($message = 'Resource not found', $code = 404)
+    {
+        return $this->sendError($message, $code);
+    }
+
+    public function sendInvalidArguments($message = 'Invalid argument', $code = 400)
+    {
+        return $this->sendError($message, $code);
     }
 } 

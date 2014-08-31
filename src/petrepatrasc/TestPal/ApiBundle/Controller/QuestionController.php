@@ -18,22 +18,22 @@ class QuestionController extends BaseController
 
     public function readAllAction($permalink)
     {
-        $questions = $this->get('testpal_question_service')->readAllByTestPermalink($permalink);
+        $questions = $this->get('testpal.api.question.service')->readAllByTestPermalink($permalink);
 
-        $questions = $this->get('testpal_test_service')->scrambleQuestions($questions);
-        $this->get('testpal_question_service')->scrambleAnswersForQuestionArray($questions);
+        $questions = $this->get('testpal.api.test.service')->scrambleQuestions($questions);
+        $this->get('testpal.api.question.service')->scrambleAnswersForQuestionArray($questions);
 
         return $this->sendResponse($questions);
     }
 
     public function readOneAction($id)
     {
-        $question = $this->get('testpal_question_service')->readOneById($id);
+        $question = $this->get('testpal.api.question.service')->readOneById($id);
         if (null === $question) {
             return $this->sendResourceNotFound();
         }
 
-        $this->get('testpal_question_service')->scrambleAnswersForQuestionEntity($question);
+        $this->get('testpal.api.question.service')->scrambleAnswersForQuestionEntity($question);
 
         return $this->sendResponse($question);
     }
@@ -43,12 +43,12 @@ class QuestionController extends BaseController
         $questionData = $request->getContent();
 
         /** @var Test $test */
-        $test = $this->get('testpal_test_service')->readOneByPermalink($permalink);
+        $test = $this->get('testpal.api.test.service')->readOneByPermalink($permalink);
 
-        $question = $this->get('testpal_question_service')->deserializeQuestion($questionData);
+        $question = $this->get('testpal.api.question.service')->deserializeQuestion($questionData);
         $question->setTest($test);
 
-        $this->get('testpal_question_service')->updateOne($question);
+        $this->get('testpal.api.question.service')->updateOne($question);
 
         return $this->sendResponse($question, 201);
     }
@@ -57,42 +57,42 @@ class QuestionController extends BaseController
     {
         $questionData = $request->getContent();
 
-        $parentQuestion = $this->get('testpal_question_service')->readOneById($id);
+        $parentQuestion = $this->get('testpal.api.question.service')->readOneById($id);
         if (null === $parentQuestion) {
             return $this->sendResourceNotFound();
         }
 
-        $childQuestion = $this->get('testpal_question_service')->deserializeQuestion($questionData);
+        $childQuestion = $this->get('testpal.api.question.service')->deserializeQuestion($questionData);
 
-        $parentQuestion = $this->get('testpal_question_service')->mergeQuestionEntity($parentQuestion, $childQuestion);
-        $this->get('testpal_question_service')->updateOne($parentQuestion);
+        $parentQuestion = $this->get('testpal.api.question.service')->mergeQuestionEntity($parentQuestion, $childQuestion);
+        $this->get('testpal.api.question.service')->updateOne($parentQuestion);
 
         return $this->sendResponse($parentQuestion, 200);
     }
 
     public function deleteOneAction($id)
     {
-        $question = $this->get('testpal_question_service')->readOneById($id);
+        $question = $this->get('testpal.api.question.service')->readOneById($id);
         if (null === $question) {
             return $this->sendResourceNotFound();
         }
 
-        $this->get('testpal_question_service')->deleteOne($question);
+        $this->get('testpal.api.question.service')->deleteOne($question);
 
         return $this->sendResponse(null, 204);
     }
 
     public function setCorrectAnswerAction($questionId, $answerId)
     {
-        $question = $this->get('testpal_question_service')->readOneById($questionId);
-        $answer = $this->get('testpal_answer_service')->readOneById($answerId);
+        $question = $this->get('testpal.api.question.service')->readOneById($questionId);
+        $answer = $this->get('testpal.api.answer.service')->readOneById($answerId);
 
         if (null === $question || null === $answer) {
             return $this->sendResourceNotFound();
         }
 
         $question->setCorrectAnswer($answer);
-        $this->get('testpal_question_service')->updateOne($question);
+        $this->get('testpal.api.question.service')->updateOne($question);
 
         return $this->sendResponse($question);
     }

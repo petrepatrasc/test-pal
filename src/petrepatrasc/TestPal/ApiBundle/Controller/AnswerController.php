@@ -10,7 +10,7 @@ class AnswerController extends BaseController
 {
     public function readAllAction($questionId)
     {
-        $answers = $this->get('testpal_answer_service')->readAllByQuestionId($questionId);
+        $answers = $this->get('testpal.api.answer.service')->readAllByQuestionId($questionId);
         shuffle($answers);
 
         return $this->sendResponse($answers);
@@ -18,7 +18,7 @@ class AnswerController extends BaseController
 
     public function readOneAction($id)
     {
-        $answer = $this->get('testpal_answer_service')->readOneById($id);
+        $answer = $this->get('testpal.api.answer.service')->readOneById($id);
 
         if (null === $answer) {
             return $this->sendResourceNotFound();
@@ -31,11 +31,11 @@ class AnswerController extends BaseController
     {
         $answerData = $request->getContent();
 
-        $question = $this->get('testpal_question_service')->readOneById($questionId);
-        $answer = $this->get('testpal_answer_service')->deserializeAnswer($answerData);
+        $question = $this->get('testpal.api.question.service')->readOneById($questionId);
+        $answer = $this->get('testpal.api.answer.service')->deserializeAnswer($answerData);
         $answer->setQuestion($question);
 
-        $this->get('testpal_answer_service')->updateOne($answer);
+        $this->get('testpal.api.answer.service')->updateOne($answer);
 
         return $this->sendResponse($question, 201);
     }
@@ -44,27 +44,27 @@ class AnswerController extends BaseController
     {
         $answerData = $request->getContent();
 
-        $parentAnswer = $this->get('testpal_answer_service')->readOneById($id);
+        $parentAnswer = $this->get('testpal.api.answer.service')->readOneById($id);
         if (null === $parentAnswer) {
             return $this->sendResourceNotFound();
         }
 
-        $childAnswer = $this->get('testpal_answer_service')->deserializeAnswer($answerData);
-        $parentAnswer = $this->get('testpal_answer_service')->mergeAnswerEntity($parentAnswer, $childAnswer);
+        $childAnswer = $this->get('testpal.api.answer.service')->deserializeAnswer($answerData);
+        $parentAnswer = $this->get('testpal.api.answer.service')->mergeAnswerEntity($parentAnswer, $childAnswer);
 
-        $this->get('testpal_answer_service')->updateOne($parentAnswer);
+        $this->get('testpal.api.answer.service')->updateOne($parentAnswer);
 
         return $this->sendResponse($parentAnswer, 200);
     }
 
     public function deleteOneAction($id)
     {
-        $answer = $this->get('testpal_answer_service')->readOneById($id);
+        $answer = $this->get('testpal.api.answer.service')->readOneById($id);
         if (null === $answer) {
             return $this->sendResourceNotFound();
         }
 
-        $this->get('testpal_answer_service')->deleteOne($answer);
+        $this->get('testpal.api.answer.service')->deleteOne($answer);
 
         return $this->sendResponse(null, 204);
     }

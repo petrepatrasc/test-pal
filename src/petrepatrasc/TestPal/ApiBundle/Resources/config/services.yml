@@ -2,18 +2,22 @@ parameters:
 #    test_pal_api.example.class: petrepatrasc\TestPal\ApiBundle\Example
 
 services:
-    testpal_rest_service:
+    testpal.api.rest.service:
         class: petrepatrasc\TestPal\ApiBundle\Service\RestService
         arguments: [@doctrine.orm.entity_manager]
 
-    testpal_test_service:
+    testpal.api.test.service:
         class: petrepatrasc\TestPal\ApiBundle\Service\TestService
         arguments: [@doctrine.orm.entity_manager, @jms_serializer]
 
-    testpal_question_service:
+    testpal.api.question.service:
         class: petrepatrasc\TestPal\ApiBundle\Service\QuestionService
         arguments: [@doctrine.orm.entity_manager, @jms_serializer]
 
-    testpal_answer_service:
+    testpal.api.answer.service:
         class: petrepatrasc\TestPal\ApiBundle\Service\AnswerService
+        arguments: [@doctrine.orm.entity_manager, @jms_serializer]
+
+    testpal.api.examination.service:
+        class: petrepatrasc\TestPal\ApiBundle\Service\ExaminationService
         arguments: [@doctrine.orm.entity_manager, @jms_serializer]

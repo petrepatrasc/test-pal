@@ -6,7 +6,7 @@ namespace petrepatrasc\TestPal\ApiBundle\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-class RestService
+class RestService extends BaseService
 {
     /**
      * @var ObjectManager

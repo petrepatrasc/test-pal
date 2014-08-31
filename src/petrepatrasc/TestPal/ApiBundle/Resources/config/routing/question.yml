@@ -1,29 +1,29 @@
-testpal_question_read_all:
+testpal.api.question.read_all:
     pattern:    /tests/{permalink}/questions
     defaults:   { _controller: TestPalApiBundle:Question:readAll, _format: json }
     methods:    [GET]
 
-testpal_question_create_one:
+testpal.api.question.create_one:
     pattern:    /tests/{permalink}/questions
     defaults:   { _controller: TestPalApiBundle:Question:createOne, _format: json }
     methods:    [POST]
 
-testpal_question_read_one:
+testpal.api.question.read_one:
     pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:readOne, _format: json }
     methods:    [GET]
 
-testpal_question_update_one:
+testpal.api.question.update_one:
     pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:updateOne, _format: json }
     methods:    [PUT]
 
-testpal_question_delete_one:
+testpal.api.question.delete_one:
     pattern:    /questions/{id}
     defaults:   { _controller: TestPalApiBundle:Question:deleteOne, _format: json }
     methods:    [DELETE]
 
-testpal_question_correct_answer:
+testpal.api.question.correct_answer:
     pattern:    /questions/{questionId}/correct/{answerId}
     defaults:   { _controller: TestPalApiBundle:Question:setCorrectAnswer, _format: json }
     methods:    [PUT]

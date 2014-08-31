@@ -12,14 +12,14 @@ class TestController extends BaseController implements RestInterface
 
     public function readAllAction()
     {
-        $tests = $this->get('testpal_test_service')->readAll(self::ENTITY_NAME);
+        $tests = $this->get('testpal.api.test.service')->readAll(self::ENTITY_NAME);
 
         return $this->sendResponse($tests);
     }
 
     public function readOneAction($permalink)
     {
-        $test = $this->get('testpal_test_service')->readOneByPermalink($permalink);
+        $test = $this->get('testpal.api.test.service')->readOneByPermalink($permalink);
 
         if (null === $test) {
             return $this->sendResourceNotFound();
@@ -32,10 +32,10 @@ class TestController extends BaseController implements RestInterface
     {
         $testData = $request->getContent();
 
-        $test = $this->get('testpal_test_service')->deserializeTest($testData);
-        $test->setPermalink($this->get('testpal_test_service')->generatePermalink($test->getName()));
+        $test = $this->get('testpal.api.test.service')->deserializeTest($testData);
+        $test->setPermalink($this->get('testpal.api.test.service')->generatePermalink($test->getName()));
 
-        $test = $this->get('testpal_test_service')->updateOne($test);
+        $test = $this->get('testpal.api.test.service')->updateOne($test);
 
         return $this->sendResponse($test, 201);
     }
@@ -44,27 +44,27 @@ class TestController extends BaseController implements RestInterface
     {
         $testData = $request->getContent();
 
-        $parentEntity = $this->get('testpal_test_service')->readOneByPermalink($permalink);
+        $parentEntity = $this->get('testpal.api.test.service')->readOneByPermalink($permalink);
         if (null === $parentEntity) {
             return $this->sendResourceNotFound();
         }
 
-        $childEntity = $this->get('testpal_test_service')->deserializeTest($testData);
+        $childEntity = $this->get('testpal.api.test.service')->deserializeTest($testData);
 
-        $parentEntity = $this->get('testpal_test_service')->mergeTestEntity($parentEntity, $childEntity);
-        $parentEntity = $this->get('testpal_test_service')->updateOne($parentEntity);
+        $parentEntity = $this->get('testpal.api.test.service')->mergeTestEntity($parentEntity, $childEntity);
+        $parentEntity = $this->get('testpal.api.test.service')->updateOne($parentEntity);
 
         return $this->sendResponse($parentEntity, 200);
     }
 
     public function deleteOneAction($permalink) {
-        $test = $this->get('testpal_test_service')->readOneByPermalink($permalink);
+        $test = $this->get('testpal.api.test.service')->readOneByPermalink($permalink);
 
         if (null === $test) {
             return $this->sendResourceNotFound();
         }
 
-        $this->get('testpal_test_service')->deleteOne($test);
+        $this->get('testpal.api.test.service')->deleteOne($test);
 
         return $this->sendResponse(null, 204);
     }
