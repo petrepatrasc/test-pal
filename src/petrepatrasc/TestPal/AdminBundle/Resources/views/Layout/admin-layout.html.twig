@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        {% block header %}
+            {% include "@TestPalAdmin/Layout/header.html.twig" %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpaladmin/css/application.css') }}"/>
+{% endblock %}

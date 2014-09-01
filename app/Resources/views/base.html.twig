@@ -4,15 +4,16 @@
         <meta charset="UTF-8" />
         <title>{% block title %}TestPal{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpalclient/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpaladmin/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpaladmin/css/bootstrap-theme.min.css') }}" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/jquery-2.1.1.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/testpalclient/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/testpaladmin/js/jquery-2.1.1.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/testpaladmin/js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

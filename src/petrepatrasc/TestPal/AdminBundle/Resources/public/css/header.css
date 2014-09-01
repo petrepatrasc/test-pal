@@ -1,0 +1,29 @@
+.header {
+    background-color: #333;
+    color: #fff;
+    font-size: 140%;
+    text-transform: uppercase;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.header-title-first {
+    color: #fff;
+}
+
+.header-title-second {
+    color: #dd3300;
+}
+
+.header-profile-avatar {
+    height: 30px;
+    width: 30px;
+}
+
+.header-profile-name {
+    color: #fff;
+    font-size: 80%;
+    text-transform: none;
+    position: relative;
+    top: 2px;
+}

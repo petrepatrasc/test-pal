@@ -1,0 +1,7 @@
+parameters:
+#    test_pal_admin.example.class: petrepatrasc\TestPal\AdminBundle\Example
+
+services:
+#    test_pal_admin.example:
+#        class: %test_pal_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

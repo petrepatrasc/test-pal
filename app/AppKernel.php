@@ -21,7 +21,9 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new petrepatrasc\TestPal\ApiBundle\TestPalApiBundle(),
+            new petrepatrasc\TestPal\AdminBundle\TestPalAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,2 @@
+tp.admin.content.routing:
+    resource: "@TestPalAdminBundle/Resources/config/routing/content.yml"

@@ -1,0 +1,7 @@
+tp.admin.content.default:
+    pattern:      /
+    defaults:     { _controller: TestPalAdminBundle:Content:dashboard }
+
+tp.admin.content.dashboard:
+    pattern:      /dashboard
+    defaults:     { _controller: TestPalAdminBundle:Content:dashboard }

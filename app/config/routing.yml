@@ -1,3 +1,7 @@
+test_pal_admin:
+    resource: "@TestPalAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 test_pal_api:
     resource: "@TestPalApiBundle/Resources/config/routing.yml"
     prefix:   /api/
