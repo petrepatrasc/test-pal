@@ -16,7 +16,6 @@
 
 .sidebar-nav a li {
     color: #fff;
-    border-top: 1px dashed #532b15;
     display: block;
     padding-left: 2em;
     padding-top: 1em;
@@ -26,8 +25,4 @@
 
 .sidebar-nav a li:hover {
     background-color: #c9c9c9;
-}
-
-.sidebar-nav-last li {
-    border-bottom: 1px dashed #532b15;
 }

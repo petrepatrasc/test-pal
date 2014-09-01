@@ -1,3 +1,25 @@
 .content {
     margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.content-title {
+    margin-bottom: 1em;
+}
+
+.content-box {
+    box-shadow: 5px 5px 10px #c9c9c9;
+    border: 1px solid #889;
+    color: #fff !important;
+    height: 120px;
+    font-size: 3rem;
+    padding: 0.3em 0.7em;
+    text-align: right;
+    text-shadow: 1px 1px #667;
+}
+
+@media only screen and (max-width : 1470px) {
+    .content-box {
+        height: 146px;
+    }
 }

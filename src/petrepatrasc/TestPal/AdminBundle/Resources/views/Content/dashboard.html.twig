@@ -1,5 +1,19 @@
 {% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
 
 {% block content %}
-    <h2>Welcome back, Petre! <br> <small>&raquo;Dashboard</small></h2>
+    <h2 class="content-title">Welcome back, Petre! <br> <small>&raquo;Dashboard</small></h2>
+
+    <div class="content-box-row">
+        <div href="#" class="content-box col-md-3 btn-primary">
+            70<br>Decisions Pending
+        </div>
+
+        <div class="content-box col-md-3 col-md-offset-1 btn-warning">
+            0<br>Currently Taking
+        </div>
+
+        <div class="content-box col-md-3 col-md-offset-1 btn-success">
+            77<br>Successful Exams
+        </div>
+    </div>
 {% endblock %}
