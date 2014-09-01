@@ -1,19 +1,94 @@
 {% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
 
 {% block content %}
-    <h2 class="content-title">Welcome back, Petre! <br> <small>&raquo;Dashboard</small></h2>
+    <h2 class="content-title">Welcome back, Petre! <br>
+        <small>&raquo; Dashboard</small>
+    </h2>
 
-    <div class="content-box-row">
-        <div href="#" class="content-box col-md-3 btn-primary">
+    <div class="content-box-row col-md-12">
+        <a href="#" class="content-box col-sm-12 col-md-3 btn-primary">
             70<br>Decisions Pending
-        </div>
+        </a>
 
-        <div class="content-box col-md-3 col-md-offset-1 btn-warning">
+        <a href="#" class="content-box col-sm-12 col-md-3 col-md-offset-1 btn-warning">
             0<br>Currently Taking
+        </a>
+
+        <a href="#" class="content-box col-sm-12 col-md-3 col-md-offset-1 btn-success">
+            77<br>Successful Exams
+        </a>
+    </div>
+
+    <div class="content-spacing"></div>
+
+    <h3 class="content-title">Tests Taken <br>
+        <small>&raquo; Last 10 Days</small>
+    </h3>
+    <div class="content-report" id="report-tests-taken-last-month"></div>
+
+    <div class="content-spacing"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="content-title">Pass Percentage<br>
+                <small>&raquo; System Overall</small>
+            </h3>
+            <div class="content-report" id="report-pass-percentage-overall"></div>
         </div>
 
-        <div class="content-box col-md-3 col-md-offset-1 btn-success">
-            77<br>Successful Exams
+        <div class="col-md-6">
+            <h3 class="content-title">Candidate Satisfaction<br>
+                <small>&raquo; System Overall</small>
+            </h3>
+            <div class="content-report" style="height: 300px;" id="report-candidate-satisfaction-overall"></div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var chart = c3.generate({
+            bindto: '#report-tests-taken-last-month',
+            data: {
+                columns: [
+                    ['Taken', 3, 4, 2, 3, 1, 0, 7, 5, 9, 10],
+                    ['Successful', 1, 1, 0, 0, 0, 0, 0, 2, 3, 5]
+                ],
+                type: 'spline'
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#report-pass-percentage-overall',
+            data: {
+                columns: [
+                    ['Failed', 120],
+                    ['Passed', 30]
+                ],
+                type: 'donut'
+            },
+            donut: {
+                title: "Pass Percentage"
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#report-candidate-satisfaction-overall',
+            data: {
+                columns: [
+                    ['data', 80.4]
+                ],
+                type: 'gauge'
+            },
+            color: {
+                pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+                threshold: {
+                    values: [30, 60, 90, 100]
+                }
+            }
+        });
+    </script>
 {% endblock %}

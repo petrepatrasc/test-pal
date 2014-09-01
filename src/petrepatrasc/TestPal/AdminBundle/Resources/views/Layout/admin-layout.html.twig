@@ -23,5 +23,13 @@
 {% block stylesheets %}
     {{ parent() }}
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpaladmin/css/c3.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/testpaladmin/css/application.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/testpaladmin/js/d3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/testpaladmin/js/c3.min.js') }}"></script>
 {% endblock %}
