@@ -17,19 +17,45 @@
     box-shadow: 5px 5px 10px #c9c9c9;
     border: 1px solid #889;
     color: #fff !important;
-    height: 120px;
     font-size: 3rem;
+    margin-bottom: 1em;
     padding: 0.3em 0.7em;
     text-align: right;
     text-shadow: 1px 1px #667;
 }
 
 .content-box-wrapper {
-    margin: 1em;
+    margin-top: 1em;
 }
 
-@media only screen and (max-width : 1470px) {
-    .content-box {
-        height: 146px;
-    }
+.content-box-center {
+    font-size: 180%;
+    text-align: center;
+}
+
+.content-box-wrapper a {
+    display: block;
+}
+
+/* QUESTION */
+.content-question {
+    border-top: 1px dashed #c9c9c9;
+    padding: 1em 0;
+    margin: 1em 0 0;
+}
+
+.content-question ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.content-question li {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.content-question .btn {
+    margin-right: 1em;
+    width: 100px;
 }

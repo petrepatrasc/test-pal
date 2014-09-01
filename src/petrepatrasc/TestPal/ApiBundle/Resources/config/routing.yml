@@ -1,11 +1,11 @@
-testpal.api.test.routing:
+tp.api.test.routing:
     resource: "@TestPalApiBundle/Resources/config/routing/test.yml"
 
-testpal.api.question.routing:
+tp.api.question.routing:
     resource: "@TestPalApiBundle/Resources/config/routing/question.yml"
 
-testpal.api.answer.routing:
+tp.api.answer.routing:
     resource: "@TestPalApiBundle/Resources/config/routing/answer.yml"
 
-testpal.api.examination.routing:
+tp.api.examination.routing:
     resource: "@TestPalApiBundle/Resources/config/routing/examination.yml"

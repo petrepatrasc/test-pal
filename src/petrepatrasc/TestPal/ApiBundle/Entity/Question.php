@@ -49,7 +49,6 @@ class Question extends EntityBase
      * @var Answer
      * @ORM\OneToOne(targetEntity="petrepatrasc\TestPal\ApiBundle\Entity\Answer")
      * @ORM\JoinColumn(name="correct_answer_id", referencedColumnName="id")
-     * @JMS\Exclude()
      */
     protected $correctAnswer;
 

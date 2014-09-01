@@ -1,24 +1,24 @@
-testpal.api.answer.read_all:
+tp.api.answer.read_all:
     pattern:    /questions/{questionId}/answers
     defaults:   { _controller: TestPalApiBundle:Answer:readAll, _format: json }
     methods:    [GET]
 
-testpal.api.answer.create_one:
+tp.api.answer.create_one:
     pattern:    /questions/{questionId}/answers
     defaults:   { _controller: TestPalApiBundle:Answer:createOne, _format: json }
     methods:    [POST]
 
-testpal.api.answer.read_one:
+tp.api.answer.read_one:
     pattern:    /answers/{id}
     defaults:   { _controller: TestPalApiBundle:Answer:readOne, _format: json }
     methods:    [GET]
 
-testpal.api.answer.update_one:
+tp.api.answer.update_one:
     pattern:    /answers/{id}
     defaults:   { _controller: TestPalApiBundle:Answer:updateOne, _format: json }
     methods:    [PUT]
 
-testpal.api.answer.delete_one:
+tp.api.answer.delete_one:
     pattern:    /answers/{id}
     defaults:   { _controller: TestPalApiBundle:Answer:deleteOne, _format: json }
     methods:    [DELETE]

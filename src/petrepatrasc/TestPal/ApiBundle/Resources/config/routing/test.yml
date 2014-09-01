@@ -1,24 +1,24 @@
-testpal.api.test.read_all:
+tp.api.test.read_all:
     pattern:    /tests
     defaults:   { _controller: TestPalApiBundle:Test:readAll, _format: json }
     methods:    [GET]
 
-testpal.api.test.read_one:
+tp.api.test.read_one:
     pattern:    /tests/{permalink}
     defaults:   { _controller: TestPalApiBundle:Test:readOne, _format: json }
     methods:    [GET]
 
-testpal.api.test.create_one:
+tp.api.test.create_one:
     pattern:    /tests
     defaults:   { _controller: TestPalApiBundle:Test:createOne, _format: json }
     methods:    [POST]
 
-testpal.api.test.update_one:
+tp.api.test.update_one:
     pattern:    /tests/{permalink}
     defaults:   { _controller: TestPalApiBundle:Test:updateOne, _format: json }
     methods:    [PUT]
 
-testpal.api.test.delete_one:
+tp.api.test.delete_one:
     pattern:    /tests/{permalink}
     defaults:   { _controller: TestPalApiBundle:Test:deleteOne, _format: json }
     methods:    [DELETE]

@@ -9,3 +9,7 @@ services:
     tp.admin.test.service:
         class: petrepatrasc\TestPal\AdminBundle\Service\TestService
         arguments: [@tp.admin.guzzle.service]
+
+    tp.admin.question.service:
+        class: petrepatrasc\TestPal\AdminBundle\Service\QuestionService
+        arguments: [@tp.admin.guzzle.service]

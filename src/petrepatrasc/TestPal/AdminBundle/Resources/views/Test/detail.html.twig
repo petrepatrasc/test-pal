@@ -1,0 +1,78 @@
+{% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
+
+{% block content %}
+    <h2 class="content-title">{{ test.name }}<br>
+        <small>&raquo; {{ test.permalink }} ({{ test.length }} minutes)</small>
+    </h2>
+
+    <div class="row">
+        <div class="content-box-wrapper col-lg-3">
+            <a href="#">
+                <div class="content-box content-box-center btn-warning"><span>Edit</span></div>
+            </a>
+        </div>
+
+        <div class="content-box-wrapper col-lg-3">
+            <a href="#">
+                <div class="content-box content-box-center btn-primary"><span>Report</span></div>
+            </a>
+        </div>
+
+        <div class="content-box-wrapper col-lg-3">
+            <a href="#">
+                <div class="content-box content-box-center btn-info"><span>PDF</span></div>
+            </a>
+        </div>
+
+        <div class="content-box-wrapper col-lg-3">
+            <a href="#">
+                <div class="content-box content-box-center btn-danger"><span>Delete</span></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="content-spacing"></div>
+
+    <h3>Questions List<br>
+        <small>&raquo; {{ questions | length }} questions currently stored</small>
+    </h3>
+
+    {% for question in questions %}
+        <div class="row">
+            <div class="content-question">
+                <div class="col-lg-10">
+                    <div class="content-question-content">
+                        <h4>{{ question.content }}</h4>
+
+                        <ul>
+                            {% for answer in question.answers %}
+                                <li>
+                                    {% if answer.id == question.correctAnswer.id %}
+                                        <div class="btn btn-success">CORRECT</div>
+                                    {% else %}
+                                        <div class="btn btn-warning">WRONG</div>
+                                    {% endif %}
+                                    {{ answer.content }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 content-box-wrapper">
+                    <a href="#">
+                        <div class="content-box content-box-center btn-warning"><span>Edit</span></div>
+                    </a>
+
+                    <a href="#">
+                        <div class="content-box content-box-center btn-primary"><span>Answers</span></div>
+                    </a>
+
+                    <a href="#">
+                        <div class="content-box content-box-center btn-danger"><span>Delete</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

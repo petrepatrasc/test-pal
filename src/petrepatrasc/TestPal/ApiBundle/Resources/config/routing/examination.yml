@@ -1,4 +1,4 @@
-testpal.api.examination.start:
+tp.api.examination.start:
     pattern:    /examination/start
     defaults:   { _controller: TestPalApiBundle:Examination:startExamination, _format: json }
     methods:    [POST]
