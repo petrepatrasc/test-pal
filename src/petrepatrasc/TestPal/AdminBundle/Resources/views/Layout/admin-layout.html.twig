@@ -6,7 +6,24 @@
             {% include "@TestPalAdmin/Layout/header.html.twig" %}
         {% endblock %}
 
-        {% block content %}{% endblock %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-2 sidebar pull-left">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <a href="#"><li>Dashboard</li></a>
+                        <a href="#"><li>Examinations</li></a>
+                        <a href="#"><li>Reports</li></a>
+                        <a href="#"><li>Tests</li></a>
+                        <a href="#"><li>Questions</li></a>
+                        <a href="#" class="sidebar-nav-last"><li>Answers</li></a>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-sm-8 col-md-9 pull-left content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 
