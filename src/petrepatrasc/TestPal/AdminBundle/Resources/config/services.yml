@@ -2,6 +2,10 @@ parameters:
 #    test_pal_admin.example.class: petrepatrasc\TestPal\AdminBundle\Example
 
 services:
-#    test_pal_admin.example:
-#        class: %test_pal_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    tp.admin.guzzle.service:
+        class: petrepatrasc\TestPal\AdminBundle\Service\GuzzleService
+        arguments: [@router, @jms_serializer]
+
+    tp.admin.test.service:
+        class: petrepatrasc\TestPal\AdminBundle\Service\TestService
+        arguments: [@tp.admin.guzzle.service]

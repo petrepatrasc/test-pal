@@ -1,0 +1,7 @@
+tp.admin.test.list:
+    pattern:    /test/list
+    defaults:   { _controller: TestPalAdminBundle:Test:list }
+
+tp.admin.test.read_one:
+    pattern:    /test/{permalink}
+    defaults:   { _controller: TestPalAdminBundle:Test:readOne }

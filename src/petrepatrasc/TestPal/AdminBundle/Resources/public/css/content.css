@@ -19,11 +19,13 @@
     color: #fff !important;
     height: 120px;
     font-size: 3rem;
-    margin-top: 1em;
-    margin-bottom: 1em;
     padding: 0.3em 0.7em;
     text-align: right;
     text-shadow: 1px 1px #667;
+}
+
+.content-box-wrapper {
+    margin: 1em;
 }
 
 @media only screen and (max-width : 1470px) {

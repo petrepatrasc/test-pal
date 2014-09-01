@@ -1,0 +1,11 @@
+{% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
+
+{% block content %}
+    <h2>Tests</h2>
+
+    {% for test in tests %}
+        <div class="col-lg-6 content-box-wrapper">
+            <a href="{{ path('tp.admin.test.read_one', {'permalink': test.permalink}) }}"><div class="content-box btn-success">{{ test.name }}<br>{{ test.permalink }}</div></a>
+        </div>
+    {% endfor %}
+{% endblock %}
