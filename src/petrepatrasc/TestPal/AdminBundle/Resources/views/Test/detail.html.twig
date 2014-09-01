@@ -42,7 +42,7 @@
             <div class="content-question">
                 <div class="col-lg-10">
                     <div class="content-question-content">
-                        <h4>{{ question.content }}</h4>
+                        <h4>{{ question.content }}<br><small>&raquo; {{ question.category }}</small></h4>
 
                         <ul>
                             {% for answer in question.answers %}

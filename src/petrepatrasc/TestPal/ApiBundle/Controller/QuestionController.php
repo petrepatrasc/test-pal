@@ -20,8 +20,8 @@ class QuestionController extends BaseController
     {
         $questions = $this->get('testpal.api.question.service')->readAllByTestPermalink($permalink);
 
-        $questions = $this->get('testpal.api.test.service')->scrambleQuestions($questions);
-        $this->get('testpal.api.question.service')->scrambleAnswersForQuestionArray($questions);
+//        $questions = $this->get('testpal.api.test.service')->scrambleQuestions($questions);
+//        $this->get('testpal.api.question.service')->scrambleAnswersForQuestionArray($questions);
 
         return $this->sendResponse($questions);
     }
