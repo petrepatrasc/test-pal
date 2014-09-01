@@ -2,6 +2,11 @@
     background-color: #fff;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+    min-height: 900px;
+}
+
+.content-wrapper {
+    background-color: #fff;
 }
 
 .content-title {

@@ -1,6 +1,5 @@
 .sidebar {
-    background-color: #878787;
-    min-height: 1200px;
+    background-image: url('../images/subtle.png');
 }
 
 .sidebar-nav {
