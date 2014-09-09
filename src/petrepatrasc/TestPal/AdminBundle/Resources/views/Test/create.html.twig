@@ -1,0 +1,25 @@
+{% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
+
+{% block content %}
+    <h2 class="content-title">Add new test<br>
+        {#<small>&raquo; {{ test.permalink }} ({{ test.length }} minutes)</small>#}
+    </h2>
+
+    <div class="row">
+        <form class="col-xs-5" method="post" action="{{ path('tp.admin.test.create_one') }}">
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Test Name or Position" />
+            </div>
+
+            <div class="form-group">
+                <label for="length">Length: </label>
+                <input class="form-control" type="text" id="length" name="length" placeholder="Test Length" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Update" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

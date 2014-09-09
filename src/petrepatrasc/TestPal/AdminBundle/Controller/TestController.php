@@ -4,6 +4,7 @@
 namespace petrepatrasc\TestPal\AdminBundle\Controller;
 
 
+use petrepatrasc\TestPal\ApiBundle\Entity\Test;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,6 +30,23 @@ class TestController extends Controller
         ]);
     }
 
+    public function createOneAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $name = $request->get('name');
+            $length = $request->get('length');
+
+            $test = new Test();
+            $test->setName($name)
+                ->setLength($length);
+
+            $this->get('tp.admin.test.service')->createOne($test);
+            return $this->redirect($this->generateUrl('tp.admin.test.list'));
+        }
+
+        return $this->render('@TestPalAdmin/Test/create.html.twig');
+    }
+
     public function updateOneAction(Request $request, $permalink)
     {
         $test = $this->get('tp.admin.test.service')->readOneByPermalink($permalink);
@@ -47,5 +65,16 @@ class TestController extends Controller
         return $this->render('@TestPalAdmin/Test/edit.html.twig', [
             'test' => $test,
         ]);
+    }
+
+    public function deleteOneAction($permalink)
+    {
+        $test = $this->get('tp.admin.test.service')->readOneByPermalink($permalink);
+
+        if (null !== $test) {
+            $this->get('tp.admin.test.service')->deleteOne($permalink);
+        }
+
+        return $this->redirect($this->generateUrl('tp.admin.test.list'));
     }
 } 

@@ -32,6 +32,17 @@ class TestService extends BaseService
         return $test;
     }
 
+    public function createOne(Test $test)
+    {
+        $path = $this->getRouter()->generate('tp.api.test.create_one', [], true);
+        $serializedEntity = $this->getSerializer()->serialize($test, 'json');
+
+        $request = $this->getGuzzleClient()->createRequest('post', $path, ['body' => $serializedEntity]);
+        $response = $this->getGuzzleClient()->send($request);
+
+        return $response;
+    }
+
     public function updateOne($permalink, Test $test)
     {
         $path = $this->getRouter()->generate('tp.api.test.update_one', ['permalink' => $permalink], true);
@@ -39,6 +50,14 @@ class TestService extends BaseService
 
         $request = $this->getGuzzleClient()->createRequest('put', $path, ['body' => $serializedEntity]);
         $response = $this->getGuzzleClient()->send($request);
+
+        return $response;
+    }
+
+    public function deleteOne($permalink)
+    {
+        $path = $this->getRouter()->generate('tp.api.test.update_one', ['permalink' => $permalink], true);
+        $response = $this->getGuzzleClient()->delete($path);
 
         return $response;
     }

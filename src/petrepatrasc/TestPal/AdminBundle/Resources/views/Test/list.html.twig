@@ -1,11 +1,22 @@
 {% extends '@TestPalAdmin/Layout/admin-layout.html.twig' %}
 
 {% block content %}
-    <h2 class="content-title">Tests<br><small>&raquo; System Overview</small></h2>
+    <h2 class="content-title">Tests<br>
+        <small>&raquo; System Overview</small>
+    </h2>
+
+    <div class="row">
+        <div class="col-xs-2">
+            <a href="{{ path('tp.admin.test.create_one') }}" class="btn btn-lg btn-primary">Add new test</a>
+        </div>
+    </div>
+    <hr/>
 
     {% for test in tests %}
         <div class="col-lg-6 content-box-wrapper">
-            <a href="{{ path('tp.admin.test.read_one', {'permalink': test.permalink}) }}"><div class="content-box btn-success">{{ test.name }}<br>{{ test.permalink }}</div></a>
+            <a href="{{ path('tp.admin.test.read_one', {'permalink': test.permalink}) }}">
+                <div class="content-box btn-success">{{ test.name }}<br>{{ test.permalink }}</div>
+            </a>
         </div>
     {% endfor %}
 {% endblock %}

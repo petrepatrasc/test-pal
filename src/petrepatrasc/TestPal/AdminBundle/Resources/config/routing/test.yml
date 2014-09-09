@@ -1,3 +1,7 @@
+tp.admin.test.create_one:
+    pattern:    /test/create
+    defaults:   { _controller: TestPalAdminBundle:Test:createOne }
+
 tp.admin.test.list:
     pattern:    /test/list
     defaults:   { _controller: TestPalAdminBundle:Test:list }
@@ -9,3 +13,7 @@ tp.admin.test.read_one:
 tp.admin.test.update_one:
     pattern:    /test/{permalink}/edit
     defaults:   { _controller: TestPalAdminBundle:Test:updateOne }
+
+tp.admin.test.delete_one:
+    pattern:    /test/{permalink}/delete
+    defaults:   { _controller: TestPalAdminBundle:Test:deleteOne }

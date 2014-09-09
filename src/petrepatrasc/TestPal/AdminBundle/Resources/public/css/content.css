@@ -5,6 +5,10 @@
     min-height: 900px;
 }
 
+.content a, .content a:visited, .content a:hover {
+    color: #fff;
+}
+
 .content-wrapper {
     background-color: #fff;
 }
