@@ -5,6 +5,7 @@ namespace petrepatrasc\TestPal\AdminBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class TestController extends Controller
 {
@@ -25,6 +26,26 @@ class TestController extends Controller
         return $this->render('@TestPalAdmin/Test/detail.html.twig', [
             'test' => $test,
             'questions' => $questions,
+        ]);
+    }
+
+    public function updateOneAction(Request $request, $permalink)
+    {
+        $test = $this->get('tp.admin.test.service')->readOneByPermalink($permalink);
+
+        if ($request->isMethod('POST')) {
+            $name = $request->get('name');
+            $length = $request->get('length');
+
+            $test->setName($name)
+                ->setLength($length);
+
+            $this->get('tp.admin.test.service')->updateOne($permalink, $test);
+            return $this->redirect($this->generateUrl('tp.admin.test.read_one', ['permalink' => $permalink]));
+        }
+
+        return $this->render('@TestPalAdmin/Test/edit.html.twig', [
+            'test' => $test,
         ]);
     }
 } 

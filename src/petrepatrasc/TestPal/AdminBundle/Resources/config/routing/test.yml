@@ -5,3 +5,7 @@ tp.admin.test.list:
 tp.admin.test.read_one:
     pattern:    /test/{permalink}
     defaults:   { _controller: TestPalAdminBundle:Test:readOne }
+
+tp.admin.test.update_one:
+    pattern:    /test/{permalink}/edit
+    defaults:   { _controller: TestPalAdminBundle:Test:updateOne }
